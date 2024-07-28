@@ -77,6 +77,14 @@ docker run --rm my-image
   - **Linux/macOS bash**, sh, zsh, and Windows Docker Toolbox Quickstart Terminal use: **$(pwd)** which means "print working directory".
   - **For PowerShell** use: **${pwd}**
   - **For cmd.exe** "Command Prompt use: **%cd%**
+  - When running postgres, you'll need to either set a password, or tell it to allow any connection you need to either set a password with the environment variable:
+
+POSTGRES_PASSWORD=mypasswd
+
+Or tell it to ignore passwords with the environment variable:
+
+POSTGRES_HOST_AUTH_METHOD=trust
+
 
 ****************************************************************************************
 
