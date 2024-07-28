@@ -60,7 +60,20 @@ In addition to scanning your images manually with docker scan command on a CLI, 
 
 ****************************************************************************************
 
-## B. BEST PRACTICE SAMPLES
+## B. TIPS
+
+
+The **--rm** flag in Docker is used to automatically **remove the container when it exits.** This is useful for running short-lived containers where you don't need to keep the container around after it has completed its task, thus helping to keep your system clean from unused containers.
+
+```
+Copy code
+docker run --rm my-image
+```
+
+
+****************************************************************************************
+
+## C. BEST PRACTICE SAMPLES
 
 
 
