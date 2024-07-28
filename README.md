@@ -24,6 +24,11 @@ When you rebuild your image, if your Dockerfile hasn't changed, Docker will just
 - Order your commands in the Dockerfile from the least to the most frequently changing commands to take advantage of caching and this way optimize how fast the image gets built. 🚀
 
 ### 5. Use .dockerignore file
+Create this .dockerignore file and list all the files and folders that we want to be ignored and when building the image, Docker will look at the contents and ignore anything specified inside. It leads to reduce image size We don't need the auto-generated folders, like: 
+- targets,
+- build folder,
+- readme file etc.
+
 
 
 
