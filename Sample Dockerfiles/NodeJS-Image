@@ -22,5 +22,5 @@ CMD ["npm", "start"]
 
 #docker build -t nodejs .
 #docker container run -rm -p 80:3000 testnode
-#docker tag mynode agoksal/mynode
-#docker push agoksal/mynode
+#docker tag mynode your_docker-hub_name/repo_name
+#docker push agoksal19/mynode #replace with your your_docker-hub_name/repo_name
