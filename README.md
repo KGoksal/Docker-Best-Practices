@@ -71,9 +71,12 @@ docker run --rm my-image
 ```
 - **docker image prune** to clean up just "dangling" images
 
-- **docker system prune** will clean up everything you're not currently using
-- - The big one is usually **docker image prune -a** which will remove all images you're not using. Use **docker system df** to see space usage.
-
+  - **docker system prune** will clean up everything you're not currently using
+  - The big one is usually **docker image prune -a** which will remove all images you're not using.
+  - Use **docker system df** to see space usage.
+  - **Linux/macOS bash**, sh, zsh, and Windows Docker Toolbox Quickstart Terminal use: **$(pwd)** which means "print working directory".
+  - **For PowerShell** use: **${pwd}**
+  - **For cmd.exe** "Command Prompt use: **%cd%**
 
 ****************************************************************************************
 
