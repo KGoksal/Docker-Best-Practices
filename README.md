@@ -50,7 +50,7 @@ _- Less dependencies and reduced image size_
 - **Tip:** Some images already have a generic user bundled in, which you can use. So you don't have to create a new one. For example the node.js image already bundles a generic user called node, which you can simply use to run the application inside the container. 
 
 ### 8. Scan your Images for Security Vulnerabilities
-- once you build the image to scan it for security vulnerabilities using the **docker scan command**. In the background Docker actually uses a service called snyk to do the vulnerability scanning of the images. The scan uses a database of vulnerabilities, which gets constantly updated. You can see:
+Once you build the image to scan it for security vulnerabilities using the **docker scan command**. In the background Docker actually uses a service called snyk to do the vulnerability scanning of the images. The scan uses a database of vulnerabilities, which gets constantly updated. You can see:
     1) the type of vulnerability,
     2) a URL for more information
     3) but also what's very useful and interesting you see which version of the relevant library actually fixes that vulnerability. So you can update your libraries to get rid of these issues.
