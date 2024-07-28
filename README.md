@@ -18,9 +18,9 @@ When choosing a Node.js image, you will see there are actually multiple official
 ### 4. OPTIMIZE CACHING FOR IMAGE LAYERS WHEN BUILDING AN IMAGE 
 When you rebuild your image, if your Dockerfile hasn't changed, Docker will just use the cached layers to build the image.
 **Advantages of cached image layers:**
-✅ **- Faster image building**
-✅ **- Faster pulling and pushing of new image versions:** Only the newly added layers will be downloaded, the rest are already locally cached by Docker.
-✅ **- Optimize the Caching**
+- ✅ **Faster image building**
+- ✅ **Faster pulling and pushing of new image versions:** Only the newly added layers will be downloaded, the rest are already locally cached by Docker.
+- ✅ **Optimize the Caching**
 - Order your commands in the Dockerfile from the least to the most frequently changing commands to take advantage of caching and this way optimize how fast the image gets built. 🚀
 
 ### 5. Use .dockerignore file
