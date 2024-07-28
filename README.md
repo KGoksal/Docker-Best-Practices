@@ -40,10 +40,11 @@ So these previous steps will be discarded.
 _- Separation of Build Tools and Dependencies from what's needed for runtime_
 _- Less dependencies and reduced image size_
 
-****************************************************************************************
+
 
 ### 7. USE THE LEAST PRIVILEGED USER 
 -> By default, when a Dockerfile does not specify a user, it uses a root user. But in reality there is mostly no reason to run containers with root privileges. This basically introduces a security issue, because when container starts on the host it, will potentially have root access on the Docker host. So running an application inside the container with a root user will make it easier for an attacker to escalate privileges on the host and basically get hold of the underlying host and its processes, not only the container itself. Especially if the application inside the container is vulnerable to exploitation.
+
 - To avoid this, the best practice is to simply create a dedicated user and a dedicated group in the Docker image to run the application and also run the application inside the container with that user:
 - You can use a directive called USER with the username and then start the application conveniently.
 - **Tip:** Some images already have a generic user bundled in, which you can use. So you don't have to create a new one. For example the node.js image already bundles a generic user called node, which you can simply use to run the application inside the container. 
@@ -53,6 +54,11 @@ _- Less dependencies and reduced image size_
     1) the type of vulnerability,
     2) a URL for more information
     3) but also what's very useful and interesting you see which version of the relevant library actually fixes that vulnerability. So you can update your libraries to get rid of these issues.
+       
+In addition to scanning your images manually with docker scan command on a CLI, you can also configure Docker Hub to scan the images automatically, when they get pushed to the repository. And of course you can integrate this check in your CI/CD pipeline when building your Docker images.
+
+
+****************************************************************************************
 
 ## B. BEST PRACTICE SAMPLES
 
