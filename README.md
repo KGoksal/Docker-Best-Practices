@@ -69,8 +69,8 @@ The **--rm** flag in Docker is used to automatically **remove the container when
 Copy code
 docker run --rm my-image
 ```
-- **docker image prune** to clean up just "dangling" images
-
+### PRUNE:
+  - **docker image prune** to clean up just "dangling" images
   - **docker system prune** will clean up everything you're not currently using
   - The big one is usually **docker image prune -a** which will remove all images you're not using.
   - Use **docker system df** to see space usage.
@@ -86,6 +86,9 @@ Or tell it to ignore passwords with the environment variable:
 POSTGRES_HOST_AUTH_METHOD=trust
 
 -> Use the command **ps aux** in each container to see a list of processes and usernames. The process needs a matching user ID or group ID to access the files in question.
+Note: If ps doesn't work in your container, you may need to install it. In debian-based images with apt, you can add it with apt-get update && apt-get install procps
+
+
 
 ****************************************************************************************
 
