@@ -1,22 +1,31 @@
-# version isn't needed as of 2020 for docker compose CLI. 
-# All 2.x and 3.x features supported
+# Docker Compose file for setting up a Drupal application with a PostgreSQL database
+
+# The 'version' field is no longer needed as of Docker Compose CLI v1.27.0+ (2020).
+# Docker Compose automatically supports all 2.x and 3.x features.
 # version: '2'
 
 services:
   drupal:
+    # Using the official Drupal 9 image
     image: drupal:9
     ports:
+      # Mapping port 8080 on the host to port 80 in the container
       - "8080:80"
     volumes:
+      # Mounting named volumes for persistent storage of Drupal data
       - drupal-modules:/var/www/html/modules
-      - drupal-profiles:/var/www/html/profiles       
-      - drupal-sites:/var/www/html/sites      
+      - drupal-profiles:/var/www/html/profiles
+      - drupal-sites:/var/www/html/sites
       - drupal-themes:/var/www/html/themes
+  
   postgres:
+    # Using the official PostgreSQL 14 image
     image: postgres:14
     environment:
+      # Setting the PostgreSQL password via an environment variable
       - POSTGRES_PASSWORD=mypasswd
 
+# Defining named volumes for persistent storage
 volumes:
   drupal-modules:
   drupal-profiles:
