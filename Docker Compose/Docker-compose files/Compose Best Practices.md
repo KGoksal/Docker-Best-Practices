@@ -82,7 +82,33 @@ You need to clean up the order of your images during production. Do not use dock
 
 Consequently, there's no way for you to be sure that an image wasn't destroyed, even when docker-compose down is called. If a container is stopped and restarted, then the exposed images can change, and you can't be sure they're still in use. Using docker rm -f to delete containers is a mistake. Docker Compose reuses port bindings, so an old service is still available, even though its container was destroyed.
 
-
 Since you cannot tell which containers might be potentially in use, you must delete all of them using the --remove-orphans flag. If a container is restarted by Docker Compose (or something else) and it reuses the same port, the new image will have the same image ID as the old one.
 
 Notice we've added the --remove-orphans flag because that ensures Docker Compose only deletes containers and images that are no longer in use, regardless of whether we or a running container uses them. This is crucial if you have services restarting.
+
+## Setting Your Containers' CPU and Memory Limits
+
+You can configure Docker to limit the CPU and memory of your containers by passing arguments into the docker-compose.yml file before starting your container. For example, the following command will start a web service with one CPU:
+```
+web:
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+```
+
+If you set a specific number of CPUs in the multi_cpu key, it will only be used when available. If you fail to set the limit, the service will use the maximum resources it requires.
+
+If you set a specific number of CPUs in the multi_cpu key, it will only be used when available. If you fail to set the limit, the service will use the maximum resources it requires.
+
+Tip: If you want to run multiple containers with different memory limits on the same machine, ensure that all your containers have different memory limits. This is because each container views how much memory it needs.
+
+
+
+
+
+
+
+
+
+
