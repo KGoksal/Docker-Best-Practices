@@ -129,7 +129,6 @@ Docker Compose allows you to define volumes for each service the same way they a
 
 
 ## 10. Keep your environment variables in one place
-
 You can import them from a file like production.env or explicitly state them in your Compose file. In Compose file you can use the $ syntax to refer to process environment variables while the .env file doesn’t support that. This makes the task of finding out where the environment variables are coming from difficult and opaque. Advised on explicitly referring to all the required environment variables for a service at the point service is defined and use **the $ syntax to pull them in based on the environment. Don’t use .env files.** They make your life easier in the short term and cause hair loss in the long term.
 
 ## 11. Use strong conventions
