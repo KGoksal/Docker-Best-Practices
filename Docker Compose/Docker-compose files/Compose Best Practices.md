@@ -118,5 +118,12 @@ This means any changes in your application should be reflected in your Docker Co
 
 This might seem obvious but keeping images explicitly versioned in your Compose file saves a lot of hassle later on. By default, Docker uses latest as the tag for an image when no tag is specified. While this behavior works fine in development and is very convenient (since you don’t need to change the Compose file every time you make a change to a service), it makes tracking of changes difficult and running in production indeterministic. It is best to explicitly specify the version of each service in the Compose file. You can use **the ${ENV} format** to get this version from an external source like your git ref or another parameter to avoid changing your Compose file every time.
 
+## 7. Keep databases out of containers
+
+In the micro-services / containerized crazy world we live in now, this tip is borderline heresy. You are supposed to keep everything in containers after all. However, until we have a reliable and developer environment-friendly storage solution for containers, running containers in databases means more pain than gain. Most applications use 2 to 3 different “supporting” component like databases or message buses which require persistent storage and most of us use stable versions of those: MySQL or RabbitMQ to name a few. Hosting and high availability for those components is a much older problem than container scheduling, storage persistence and high availability and as such there is much more information around on how to build a reliable MySQL Master / Slave cluster natively than running it in a container. Moreover, most databases are available as services like RDS which are scalable and reliable.
+
+## 8. Use the same ports and load balancers
+
+In a development environment, you don’t need to run load balancers in front of your services because you’re not going to have multiple containers for the same service. However, this is different in production. With the exception of single container services (persisted services), you are very likely to run multiple instances of the same service on each node (server). This means the load needs to be balanced across your containers using a load balancer. This is achieved by using Nginx or HAProxy in most cases. 
 
 
