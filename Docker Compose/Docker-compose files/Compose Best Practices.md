@@ -107,9 +107,16 @@ Tip: If you want to run multiple containers with different memory limits on the 
 
 Consequently, you need to understand the resource requirements of your service. This will prevent you from wasting resources and minimize production costs.
 
+## 4. Keep your compose file the same across dev and production
+ While Docker suggests having different Docker Compose files in development and production, we have seen many cases that this has caused issues. By keeping your development and production files separate, at the best, you end up reapplying all modifications in your development Compose file to your production one. This is a manual and error-prone process. In many cases, some changes are missed and your app breaks just as it goes to production. This approach also ignores other environments than development and production, like Staging or QA. Any new environment will add to this complexity. As a rule, you should always try to keep only a single Docker Compose file for all environments. Some of the tips below will elaborate more on some of the ways of doing so.
 
+## 5. Keep your compose file version controlled and next to the app
 
+This means any changes in your application should be reflected in your Docker Compose file. Changes to the port of a service or a new service added to the application should be made in your Docker Compose file as well. That's why the best place for your Docker Compose file is next to your app and version controlled in lockstep with your application.
 
+## 6. Keep images EXPLICITLY VERSIONE 
+
+This might seem obvious but keeping images explicitly versioned in your Compose file saves a lot of hassle later on. By default, Docker uses latest as the tag for an image when no tag is specified. While this behavior works fine in development and is very convenient (since you don’t need to change the Compose file every time you make a change to a service), it makes tracking of changes difficult and running in production indeterministic. It is best to explicitly specify the version of each service in the Compose file. You can use **the ${ENV} format** to get this version from an external source like your git ref or another parameter to avoid changing your Compose file every time.
 
 
 
