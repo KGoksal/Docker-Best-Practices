@@ -1,0 +1,32 @@
+# Docker Compose file for setting up Drupal and PostgreSQL services
+# Note: The 'version' key is not needed as of 2020 for Docker Compose CLI.
+# All 2.x and 3.x features are supported.
+
+services:
+  # Drupal service
+  drupal:
+    image: custom-drupal  # Use the custom Drupal image built from the Dockerfile
+    build: .  # Build the image from the Dockerfile in the current directory
+    ports:
+      - "8080:80"  # Map port 8080 on the host to port 80 in the container
+    volumes:
+      - drupal-modules:/var/www/html/modules  # Persist Drupal modules
+      - drupal-profiles:/var/www/html/profiles  # Persist Drupal profiles
+      - drupal-sites:/var/www/html/sites  # Persist Drupal sites
+      - drupal-themes:/var/www/html/themes  # Persist Drupal themes
+
+  # PostgreSQL service
+  postgres:
+    image: postgres:14  # Use PostgreSQL version 14
+    environment:
+      - POSTGRES_PASSWORD=yourpasswd  # Set the PostgreSQL password
+    volumes:
+      - drupal-data:/var/lib/postgresql/data  # Persist PostgreSQL data
+
+# Define named volumes to persist data
+volumes:
+  drupal-data:  # Volume for PostgreSQL data
+  drupal-modules:  # Volume for Drupal modules
+  drupal-profiles:  # Volume for Drupal profiles
+  drupal-sites:  # Volume for Drupal sites
+  drupal-themes:  # Volume for Drupal themes
