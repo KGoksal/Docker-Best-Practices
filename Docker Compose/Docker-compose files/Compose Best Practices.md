@@ -72,11 +72,11 @@ In the above YAML configuration, the first service defines restart: always, whic
 
 
 # Production
-## Leverage the Docker Restart Policy
+## 1. Leverage the Docker Restart Policy
 
 Occasionally, you'll face a scenario when a service fails to start. A common reason is that another service on your host machine has changed, and Docker Compose uses the old environment variables. To ensure this doesn't happen, set the restart behavior to restart: always and configure your services with **update_config: true**. This will refresh the environment variables for each run. However, if your app relies on other services (MySQL, Redis, etc.) outside of Docker Compose, then you should take extra precautions. Make sure they are configured correctly.
 
-## Correct Cleanup Order of Docker Images
+## 2. Correct Cleanup Order of Docker Images
 
 You need to clean up the order of your images during production. Do not use docker rm -f as it may destroy useful images. Always run **docker rm -f --remove-orphans**. If you're working in the dev stage, this is not an issue because Docker Compose builds images only once, then exposes them. Thus there's no need to worry about removing old images. However, in production, Docker loops through all images when the container stops and restarts.
 
@@ -86,7 +86,7 @@ Since you cannot tell which containers might be potentially in use, you must del
 
 Notice we've added the --remove-orphans flag because that ensures Docker Compose only deletes containers and images that are no longer in use, regardless of whether we or a running container uses them. This is crucial if you have services restarting.
 
-## Setting Your Containers' CPU and Memory Limits
+## 3. Setting Your Containers' CPU and Memory Limits
 
 You can configure Docker to limit the CPU and memory of your containers by passing arguments into the docker-compose.yml file before starting your container. For example, the following command will start a web service with one CPU:
 ```
