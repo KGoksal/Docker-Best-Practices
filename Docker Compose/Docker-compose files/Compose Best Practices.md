@@ -135,5 +135,21 @@ Docker Compose allows you to define volumes for each service the same way they a
 
 You can import them from a file like production.env or explicitly state them in your Compose file. In Compose file you can use the $ syntax to refer to process environment variables while the .env file doesn’t support that. This makes the task of finding out where the environment variables are coming from difficult and opaque. Advised on explicitly referring to all the required environment variables for a service at the point service is defined and use **the $ syntax to pull them in based on the environment. Don’t use .env files.** They make your life easier in the short term and cause hair loss in the long term.
 
+## 11. Use strong conventions
+
+With so many building blocks of a containerized application getting lost is very easy: git repositories, Dockerfiles, images, and services they all point to the same part of your application. While it is easy to get started with pulling the code out of your git, building it on your laptop into a Docker image and then adding that as a service to Docker compose, it will start to get confusing very quickly. 
+
+### -  Make your containers traceable to codebase
+You might use multiple git repos or a single git repo with multiple Dockerfiles or start commands for your services. While these are all ok, make sure you follow a naming convention that allows you to look at a running container and tell you exactly how that container was built, which git repo and using which Dockerfile.
+
+### -  Make your containers traceable to git commit
+This tip is about git refs and making sure you know how to trace a running container back to the git ref (git hash or tag) that was used to build it. With Docker, you now have 2 repositories to trace code through: one is your git repo and the other one is your Docker repo. This makes tracing containers back to the git ref less transparent. To avoid this use a container native CI/CD tool that is integrated with your Orchestrator (shameless plug: use Cloud 66). Short of that, use the git ref as the tag for the container running.
+
+
+## 12. Make sure your services return the correct exit code
+
+We all use logging or console output to show errors in our apps. In a containerized world, exit codes have a special place. Orchestrators (like Compose, Swarm, Kubernetes) use exit codes to tell if a service started or failed to start. The change of behavior in starting containers between Compose and Swarm means exist codes are even more important. While Docker Compose allows defining service dependencies, Docker Swarm (and Kubernetes) keep trying to start a crashing container (that exits with a code other than 0) several times. This means you need to make sure not only errors are logged but the exit codes are accurate as they will show up in the orchestrator’s logs and can give you valuable clues as to what’s going on with your application.
+
+
 
 
