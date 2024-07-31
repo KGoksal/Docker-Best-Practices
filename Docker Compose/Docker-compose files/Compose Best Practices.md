@@ -36,7 +36,6 @@ And to ensure the configuration takes effect, log out of your shell session, log
 printenv
 ```
 
-
 ## 2. If Possible, Avoid Multiple Compose Files for Different Environments
 
 As a rule, you should always try to keep only a single Docker Compose file for all environments. But in cases where you might want to use nodemon to monitor changes in your node application during development. Or perhaps you would use a managed MongoDB database in production but run MongoDB locally in a container for development.
