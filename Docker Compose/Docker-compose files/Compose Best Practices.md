@@ -103,8 +103,9 @@ If you set a specific number of CPUs in the multi_cpu key, it will only be used 
 
 Tip: If you want to run multiple containers with different memory limits on the same machine, ensure that all your containers have different memory limits. This is because each container views how much memory it needs.
 
+**Note:** You can use this technique for multiple services if you'd like. Docker Compose will automatically get the values from the env file for each container when it starts up.
 
-
+Consequently, you need to understand the resource requirements of your service. This will prevent you from wasting resources and minimize production costs.
 
 
 
