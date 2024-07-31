@@ -126,4 +126,14 @@ In the micro-services / containerized crazy world we live in now, this tip is bo
 
 In a development environment, you don’t need to run load balancers in front of your services because you’re not going to have multiple containers for the same service. However, this is different in production. With the exception of single container services (persisted services), you are very likely to run multiple instances of the same service on each node (server). This means the load needs to be balanced across your containers using a load balancer. This is achieved by using Nginx or HAProxy in most cases. 
 
+## 9. Always use defined volumes
+
+Docker Compose allows you to define volumes for each service the same way they are defined with the docker run command. While this is possible it is not advisable. The best way to use volumes in Docker Compose is to define them a named volumes on top of your Compose file and use those names. This would allow your Ops team to replace the underlying storage for the volume with a SAN or NAS or other types of storage while during development you will just use a local volume mounted onto the container.
+
+
+## 10. Keep your environment variables in one place
+
+You can import them from a file like production.env or explicitly state them in your Compose file. In Compose file you can use the $ syntax to refer to process environment variables while the .env file doesn’t support that. This makes the task of finding out where the environment variables are coming from difficult and opaque. Advised on explicitly referring to all the required environment variables for a service at the point service is defined and use **the $ syntax to pull them in based on the environment. Don’t use .env files.** They make your life easier in the short term and cause hair loss in the long term.
+
+
 
