@@ -14,7 +14,6 @@ When choosing a Node.js image, you will see there are actually multiple official
 -  **2) Security Issue**
 -  In comparison by using smaller images with leaner OS distributions, which only bundle the necessary system tools and libraries, you're also **minimizing the attack surface and making sure that you build more secure images.**
 -  = So the best practice here would be to select an image with a **specific version based on a leaner OS distribution like alpine** for example: Alpine has everything you need to start your application in a container, but is much more lightweight. And for most of the images that you look on a Docker Hub, you will see a version tag with alpine distribution inside.
-
 ### 4. OPTIMIZE CACHING FOR IMAGE LAYERS WHEN BUILDING AN IMAGE 
 When you rebuild your image, if your Dockerfile hasn't changed, Docker will just use the cached layers to build the image.
 **Advantages of cached image layers:**
