@@ -29,7 +29,6 @@ Create this .dockerignore file and list all the files and folders that we want t
 - readme file etc.
 
 ### 6. Make use of Multi-Stage Builds
-
 Let's say there are some contents (**like development, testing tools and libraries**) in your project that you need for building the image - so during the
 build process - but **you DON'T NEED them in the final image itself to run the application**. If you keep these artifacts in your final image even though they're absolutely unnecessary for running the application, it will again result in an increased image size and increased attack surface. 
 - = separate the build stage from the runtime stage.
