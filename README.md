@@ -41,7 +41,6 @@ _- Separation of Build Tools and Dependencies from what's needed for runtime_
 _- Less dependencies and reduced image size_
 
 
-
 ### 7. USE THE LEAST PRIVILEGED USER 
 -> By default, when a Dockerfile does not specify a user, it uses a root user. But in reality there is mostly no reason to run containers with root privileges. This basically introduces a security issue, because when container starts on the host it, will potentially have root access on the Docker host. So running an application inside the container with a root user will make it easier for an attacker to escalate privileges on the host and basically get hold of the underlying host and its processes, not only the container itself. Especially if the application inside the container is vulnerable to exploitation.
 
