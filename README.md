@@ -8,6 +8,7 @@ So instead of a random latest image tag, you want to fixate the version and just
 
 ### 3. Use Small-Sized Official Images
 When choosing a Node.js image, you will see there are actually multiple official images. Not only with different version numbers, but also with different operating system distributions. So pay attention to these:
+
 -  **1) Image Size**
   In contrast having **smaller images** means you need **less storage** space in image repository as well as on a deployment server and of course you can transfer the images **faster when pulling or pushing** them from the repository.
 -  **2) Security Issue**
