@@ -1,5 +1,4 @@
 # DOCKER-COMPOSE BEST PRACTICES
-
 ## 1. Substitute Environment Variables in Docker Compose Files
 It is best to configure those environmental variables in the machine's shell, where you will deploy the multi-container application, so there are no secret leaks. And then populate the environment variables inside the Docker Compose file by substituting as seen below.
 
