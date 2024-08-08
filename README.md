@@ -1,4 +1,4 @@
-# Docker Best Practices
+# Docker Best Practices 
 ## A. BEST PRACTICE RULES
 ### 1. Use an official and verified Docker image as a base image, whenever available.
 Instead of taking a base operating system image (like ubuntu) and installing node.js, npm and whatever other tools you need for your application, **use the official node image for your application.**
