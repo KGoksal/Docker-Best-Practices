@@ -83,8 +83,6 @@ POSTGRES_HOST_AUTH_METHOD=trust
 -> Use the command **ps aux** in each container to see a list of processes and usernames. The process needs a matching user ID or group ID to access the files in question.
 Note: If ps doesn't work in your container, you may need to install it. In debian-based images with apt, you can add it with apt-get update && apt-get install procps
 
-
-
 ****************************************************************************************
 
 ## C. BEST PRACTICE SAMPLES
