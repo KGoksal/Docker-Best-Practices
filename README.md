@@ -48,8 +48,11 @@ _- Less dependencies and reduced image size_
 
 ### 8. Scan your Images for Security Vulnerabilities
 Once you build the image to scan it for security vulnerabilities using the **docker scan command**. In the background Docker actually uses a service called snyk to do the vulnerability scanning of the images. The scan uses a database of vulnerabilities, which gets constantly updated. You can see:
+
     1) the type of vulnerability,
+    
     2) a URL for more information
+    
     3) but also what's very useful and interesting you see which version of the relevant library actually fixes that vulnerability. So you can update your libraries to get rid of these issues.
        
 In addition to scanning your images manually with docker scan command on a CLI, you can also configure Docker Hub to scan the images automatically, when they get pushed to the repository. And of course you can integrate this check in your CI/CD pipeline when building your Docker images.
