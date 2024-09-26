@@ -90,3 +90,11 @@ Note: If ps doesn't work in your container, you may need to install it. In debia
 
 ## C. BEST PRACTICE SAMPLES
 
+```
+FROM alpine:3.12
+# Create user and set ownership and permissions as required
+RUN adduser -D myuser && chown -R myuser /myapp-data
+# ... copy application files
+USER myuser
+ENTRYPOINT ["/myapp"]
+```
