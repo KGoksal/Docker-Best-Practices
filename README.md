@@ -90,6 +90,7 @@ Note: If ps doesn't work in your container, you may need to install it. In debia
 
 ## C. BEST PRACTICE SAMPLES
 
+### 1 Rootless containers
 ```
 FROM alpine:3.12
 # Create user and set ownership and permissions as required
@@ -97,4 +98,18 @@ RUN adduser -D myuser && chown -R myuser /myapp-data
 # ... copy application files
 USER myuser
 ENTRYPOINT ["/myapp"]
+```
+
+### 2 Multistage builds
+
+```
+#This is the "builder" stage
+FROM golang:1.15 as builder
+WORKDIR /my-go-app
+COPY app-src .
+RUN GOOS=linux GOARCH=amd64 go build ./cmd/app-service
+#This is the final stage, and we copy artifacts from "builder"
+FROM gcr.io/distroless/static-debian10
+COPY --from=builder /my-go-app/app-service /bin/app-service
+ENTRYPOINT ["/bin/app-service"]
 ```
