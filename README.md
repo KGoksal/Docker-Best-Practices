@@ -113,3 +113,20 @@ FROM gcr.io/distroless/static-debian10
 COPY --from=builder /my-go-app/app-service /bin/app-service
 ENTRYPOINT ["/bin/app-service"]
 ```
+
+Since RUN, COPY, ADD, and other instructions will create a new container layer, grouping multiple commands together will reduce the number of layers.
+ - **For example, instead of:**
+```
+FROM ubuntu
+RUN apt-get install -y wget
+RUN wget https://…/downloadedfile.tar
+RUN tar xvzf downloadedfile.tar
+RUN rm downloadedfile.tar
+RUN apt-get remove wget
+```
+
+- **It would be a Dockerfile best practice to do:**
+```
+FROM ubuntu
+RUN apt-get install wget && wget https://…/downloadedfile.tar && tar xvzf downloadedfile.tar && rm downloadedfile.tar && apt-get remove wget
+```
