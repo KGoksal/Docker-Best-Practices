@@ -128,5 +128,5 @@ RUN apt-get remove wget
 - **It would be a Dockerfile best practice to do:**
 ```
 FROM ubuntu
-RUN apt-get install wget && wget https://…/downloadedfile.tar && tar xvzf downloadedfile.tar && rm downloadedfile.tar && apt-get remove wget
+RUN apt-get install wget && wget https://…/downloadedfile.tar && tar xvzf downloadedfile.tar && rm downloadedfile.tar && apt-get remove wget 
 ```
